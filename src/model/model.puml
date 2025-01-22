@@ -1,0 +1,76 @@
+@startuml pizzaburger service
+
+skinparam Linetype ortho
+hide circle
+
+class User {
+    -id : int [PK] <<generated>>
+    -name : varchar
+}
+
+class Chart {
+    -id : int [PK] <<generated>>
+    -user_id : int [FK]
+}
+
+class Restaurant {
+    -id : int [PK] <<generated>>
+}
+
+class Review {
+    -id : int [PK]  <<generated>>
+    -user_id : int [FK]
+    -OrderPizza : int [FK]
+}
+
+class Pizza {
+    -id : int [PK]  <<generated>>
+    -restaurant_id : int [FK]
+    -type : PizzaType
+
+}
+
+
+class Order {
+    -id : int [PK]  <<generated>>
+    -user_id : int [FK]
+}
+
+enum PizzaType {
+  HAM
+  MARGHERITA
+  VEGGIE
+  SPECIAL
+}
+
+class OrderPizza {
+    -id : int [PK]  <<generated>>
+    -order_id : int [FK]
+    -pizza_id : int [FK]
+    -quantity : int
+    -review_id : int [FK]
+}
+
+class ChartPizza {
+    -id : int [PK]  <<generated>>
+    -chart_id : int [FK]
+    -pizza_id : int [FK]
+    -quantity : int
+}
+
+' Define relationships
+User ||..|| Chart : "user_id [FK]"
+
+User ||..o{ Order : "user_id [FK]"
+User ||..o{ Review : "user_id [FK]"
+
+Pizza ||..o{ OrderPizza : "pizza_id [FK]"
+Order ||..o{ OrderPizza : "order_id [FK]"
+
+Restaurant ||..o{ Pizza : "restaurant_id [FK]"
+
+Chart ||..o{ ChartPizza : "chart_id [FK]"
+Pizza ||..o{ ChartPizza : "pizza_id [FK]"
+
+Review ||..|| OrderPizza : "review_id [FK]"
+@enduml
