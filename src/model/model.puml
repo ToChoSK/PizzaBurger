@@ -21,6 +21,7 @@ class Review {
     -id : int [PK]  <<generated>>
     -user_id : int [FK]
     -OrderPizza : int [FK]
+    -content : varchar
 }
 
 class Pizza {

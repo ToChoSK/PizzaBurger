@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "order_id": 1,
+    "pizza_id": 1,
+    "quantity": 2,
+    "review_id": 1
+  },
+  {
+    "id": 2,
+    "order_id": 1,
+    "pizza_id": 2,
+    "quantity": 1,
+    "review_id": null
+  }
+]

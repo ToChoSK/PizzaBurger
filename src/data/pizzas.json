@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "restaurant_id": 1,
+    "type": "HAM"
+  },
+  {
+    "id": 2,
+    "restaurant_id": 1,
+    "type": "MARGHERITA"
+  },
+  {
+    "id": 3,
+    "restaurant_id": 2,
+    "type": "SPECIAL"
+  }
+]
