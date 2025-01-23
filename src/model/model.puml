@@ -30,6 +30,7 @@ class Pizza {
     -restaurant_id : int [FK]
     -type : PizzaType
     -price : float
+    -image : varchar
 
 }
 
