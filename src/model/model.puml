@@ -15,6 +15,7 @@ class Chart {
 
 class Restaurant {
     -id : int [PK] <<generated>>
+    -name : varchar
 }
 
 class Review {
@@ -28,6 +29,7 @@ class Pizza {
     -id : int [PK]  <<generated>>
     -restaurant_id : int [FK]
     -type : PizzaType
+    -price : float
 
 }
 
@@ -39,9 +41,9 @@ class Order {
 
 enum PizzaType {
   HAM
-  MARGHERITA
+  CHEESE
   VEGGIE
-  SPECIAL
+  EXTRA
 }
 
 class OrderPizza {

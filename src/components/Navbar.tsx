@@ -1,7 +1,10 @@
 import { Button } from "./ui/Button.tsx"
 import { MapPin, User } from 'lucide-react'
+import {useNavigate} from "react-router-dom";
 
 export function Navbar() {
+  const navigate = useNavigate();
+
   return (
       <nav className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
@@ -10,10 +13,13 @@ export function Navbar() {
               <img
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DifXxkuAUoZhUNqFxRuD52QSFyfxGT.png"
                   alt="PizzaBurger Logo"
-                  className="h-12 w-12"
+                  className="h-12 w-12 cursor-pointer" // Kurzot ukazuje možnosť kliknutia
+                  onClick={() => navigate('/')} // Navigácia na Home Page
               />
               <div className="hidden md:flex items-center gap-6">
-                <Button variant="link" className="text-white hover:text-white/80">HOME</Button>
+                <Button variant="link" className="text-white hover:text-white/80"
+                        onClick={() => navigate('/')} // Navigácia na /pizzas
+                >HOME</Button>
                 <Button variant="link" className="text-white hover:text-white/80">LAST ORDERS</Button>
               </div>
             </div>

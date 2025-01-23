@@ -1,6 +1,9 @@
 import { Button } from "./ui/Button.tsx"
+import { useNavigate } from "react-router-dom";
 
 export function Hero() {
+    const navigate = useNavigate();
+
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
             {/* Burger Section */}
@@ -37,6 +40,7 @@ export function Hero() {
                     <Button
                         size="lg"
                         className="bg-red-700 hover:bg-red-800 text-white px-12 py-6 text-xl rounded-none"
+                        onClick={() => navigate('/pizzas')} // Navigácia na /pizzas
                     >
                         ORDER
                     </Button>
