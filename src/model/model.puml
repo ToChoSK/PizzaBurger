@@ -8,7 +8,7 @@ class User {
     -name : varchar
 }
 
-class Chart {
+class Cart {
     -id : int [PK] <<generated>>
     -user_id : int [FK]
 }
@@ -56,7 +56,7 @@ class OrderPizza {
 
 class ChartPizza {
     -id : int [PK]  <<generated>>
-    -chart_id : int [FK]
+    -cart_id : int [FK]
     -pizza_id : int [FK]
     -quantity : int
 }
@@ -72,7 +72,7 @@ Order ||..o{ OrderPizza : "order_id [FK]"
 
 Restaurant ||..o{ Pizza : "restaurant_id [FK]"
 
-Chart ||..o{ ChartPizza : "chart_id [FK]"
+Chart ||..o{ ChartPizza : "cart_id [FK]"
 Pizza ||..o{ ChartPizza : "pizza_id [FK]"
 
 Review ||..|| OrderPizza : "review_id [FK]"
