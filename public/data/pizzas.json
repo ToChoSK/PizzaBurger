@@ -4,174 +4,199 @@
     "restaurant_id": 1,
     "type": "HAM",
     "price": 5.99,
-    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.5
   },
   {
     "id": 2,
     "restaurant_id": 1,
     "type": "CHEESE",
     "price": 4.5,
-    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.6
   },
   {
     "id": 3,
     "restaurant_id": 1,
     "type": "VEGETARIAN",
     "price": 6.75,
-    "image": "https://images.unsplash.com/photo-1576458088443-04a19bb13da6?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1576458088443-04a19bb13da6?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.2
   },
   {
     "id": 4,
     "restaurant_id": 1,
     "type": "EXTRA",
     "price": 7.89,
-    "image": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.7
   },
   {
     "id": 5,
     "restaurant_id": 2,
     "type": "HAM",
     "price": 5.49,
-    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.4
   },
   {
     "id": 6,
     "restaurant_id": 2,
     "type": "CHEESE",
     "price": 4.99,
-    "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.5
   },
   {
     "id": 7,
     "restaurant_id": 2,
     "type": "VEGETARIAN",
     "price": 6.25,
-    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.3
   },
   {
     "id": 8,
     "restaurant_id": 2,
     "type": "EXTRA",
     "price": 8.0,
-    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.8
   },
   {
     "id": 9,
     "restaurant_id": 3,
     "type": "HAM",
     "price": 5.75,
-    "image": "https://images.unsplash.com/photo-1576458088443-04a19bb13da6?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1576458088443-04a19bb13da6?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.3
   },
   {
     "id": 10,
     "restaurant_id": 3,
     "type": "CHEESE",
     "price": 4.8,
-    "image": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.6
   },
   {
     "id": 11,
     "restaurant_id": 3,
     "type": "VEGETARIAN",
     "price": 6.99,
-    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.4
   },
   {
     "id": 12,
     "restaurant_id": 3,
     "type": "EXTRA",
     "price": 7.25,
-    "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.7
   },
   {
     "id": 13,
     "restaurant_id": 1,
     "type": "HAM",
     "price": 5.25,
-    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.2
   },
   {
     "id": 14,
     "restaurant_id": 1,
     "type": "CHEESE",
     "price": 4.75,
-    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.5
   },
   {
     "id": 15,
     "restaurant_id": 1,
     "type": "VEGETARIAN",
     "price": 6.5,
-    "image": "https://images.unsplash.com/photo-1576458088443-04a19bb13da6?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1576458088443-04a19bb13da6?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.3
   },
   {
     "id": 16,
     "restaurant_id": 1,
     "type": "EXTRA",
     "price": 8.49,
-    "image": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.8
   },
   {
     "id": 17,
     "restaurant_id": 2,
     "type": "HAM",
     "price": 5.99,
-    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.5
   },
   {
     "id": 18,
     "restaurant_id": 2,
     "type": "CHEESE",
     "price": 4.9,
-    "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.6
   },
   {
     "id": 19,
     "restaurant_id": 2,
     "type": "VEGETARIAN",
     "price": 6.89,
-    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.4
   },
   {
     "id": 20,
     "restaurant_id": 2,
     "type": "EXTRA",
     "price": 7.75,
-    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.7
   },
   {
     "id": 21,
     "restaurant_id": 3,
     "type": "HAM",
     "price": 5.8,
-    "image": "https://images.unsplash.com/photo-1576458088443-04a19bb13da6?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1576458088443-04a19bb13da6?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.3
   },
   {
     "id": 22,
     "restaurant_id": 3,
     "type": "CHEESE",
     "price": 4.85,
-    "image": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.6
   },
   {
     "id": 23,
     "restaurant_id": 3,
     "type": "VEGETARIAN",
     "price": 6.95,
-    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.4
   },
   {
     "id": 24,
     "restaurant_id": 3,
     "type": "EXTRA",
     "price": 7.99,
-    "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.8
   },
   {
     "id": 25,
     "restaurant_id": 1,
     "type": "HAM",
     "price": 5.49,
-    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80"
+    "image": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?auto=format&fit=crop&w=300&q=80",
+    "rating": 4.4
   }
 ]

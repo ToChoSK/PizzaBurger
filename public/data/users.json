@@ -1,10 +1,16 @@
 [
   {
     "id": 1,
-    "name": "John Doe"
+    "name": "Andrej Bycan",
+    "email" : "bycan@pycan.sk",
+    "password" : "bycanpycan",
+    "address:" : "Mlynská dolina 1 04545 Bratislava"
   },
   {
     "id": 2,
-    "name": "Jane Smith"
+    "name": "Lesný Duch",
+    "email" : "lesnyduch@bukovec.sk",
+    "password" : "lesnyduch",
+    "address:" : "Bukovec 333 04022"
   }
 ]

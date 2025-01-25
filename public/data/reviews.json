@@ -2,7 +2,161 @@
   {
     "id": 1,
     "user_id": 1,
-    "OrderPizza": 1,
+    "pizza_id": 1,
+    "order_pizza_id": 1,
+    "rating": 4,
     "content": "Great taste!"
+  },
+  {
+    "id": 2,
+    "user_id": 2,
+    "pizza_id": 2,
+    "order_pizza_id": 2,
+    "rating": 5,
+    "content": "Absolutely delicious!"
+  },
+  {
+    "id": 3,
+    "user_id": 1,
+    "pizza_id": 3,
+    "order_pizza_id": 3,
+    "rating": 3,
+    "content": "A bit too salty for my taste."
+  },
+  {
+    "id": 4,
+    "user_id": 2,
+    "pizza_id": 4,
+    "order_pizza_id": 4,
+    "rating": 4,
+    "content": "Very cheesy and flavorful!"
+  },
+  {
+    "id": 5,
+    "user_id": 1,
+    "pizza_id": 5,
+    "order_pizza_id": 5,
+    "rating": 2,
+    "content": "Not what I expected."
+  },
+  {
+    "id": 6,
+    "user_id": 2,
+    "pizza_id": 6,
+    "order_pizza_id": 6,
+    "rating": 5,
+    "content": "Perfect for a vegetarian!"
+  },
+  {
+    "id": 7,
+    "user_id": 1,
+    "pizza_id": 7,
+    "order_pizza_id": 7,
+    "rating": 3,
+    "content": "Could be better, but not bad."
+  },
+  {
+    "id": 8,
+    "user_id": 2,
+    "pizza_id": 8,
+    "order_pizza_id": 8,
+    "rating": 4,
+    "content": "Loved the crispy crust!"
+  },
+  {
+    "id": 9,
+    "user_id": 1,
+    "pizza_id": 9,
+    "order_pizza_id": 9,
+    "rating": 5,
+    "content": "Best pizza I’ve ever had!"
+  },
+  {
+    "id": 10,
+    "user_id": 2,
+    "pizza_id": 10,
+    "order_pizza_id": 10,
+    "rating": 4,
+    "content": "Solid choice for cheese lovers."
+  },
+  {
+    "id": 11,
+    "user_id": 1,
+    "pizza_id": 11,
+    "order_pizza_id": 11,
+    "rating": 3,
+    "content": "Toppings were sparse."
+  },
+  {
+    "id": 12,
+    "user_id": 2,
+    "pizza_id": 12,
+    "order_pizza_id": 12,
+    "rating": 4,
+    "content": "Nicely spiced and balanced."
+  },
+  {
+    "id": 13,
+    "user_id": 1,
+    "pizza_id": 13,
+    "order_pizza_id": 13,
+    "rating": 5,
+    "content": "Exceptional quality!"
+  },
+  {
+    "id": 14,
+    "user_id": 2,
+    "pizza_id": 14,
+    "order_pizza_id": 14,
+    "rating": 2,
+    "content": "Not worth the price."
+  },
+  {
+    "id": 15,
+    "user_id": 1,
+    "pizza_id": 15,
+    "order_pizza_id": 15,
+    "rating": 4,
+    "content": "Fresh ingredients, nice flavor."
+  },
+  {
+    "id": 16,
+    "user_id": 2,
+    "pizza_id": 16,
+    "order_pizza_id": 16,
+    "rating": 5,
+    "content": "Simply amazing!"
+  },
+  {
+    "id": 17,
+    "user_id": 1,
+    "pizza_id": 17,
+    "order_pizza_id": 17,
+    "rating": 3,
+    "content": "Decent, but nothing special."
+  },
+  {
+    "id": 18,
+    "user_id": 2,
+    "pizza_id": 18,
+    "order_pizza_id": 18,
+    "rating": 4,
+    "content": "Good balance of flavors."
+  },
+  {
+    "id": 19,
+    "user_id": 1,
+    "pizza_id": 19,
+    "order_pizza_id": 19,
+    "rating": 5,
+    "content": "Will definitely order again!"
+  },
+  {
+    "id": 20,
+    "user_id": 2,
+    "pizza_id": 20,
+    "order_pizza_id": 20,
+    "rating": 4,
+    "content": "Tasty and satisfying."
   }
 ]

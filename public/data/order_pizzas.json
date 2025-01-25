@@ -12,5 +12,26 @@
     "pizza_id": 2,
     "quantity": 1,
     "review_id": null
+  },
+  {
+    "id": 3,
+    "order_id": 2,
+    "pizza_id": 5,
+    "quantity": 3,
+    "review_id": 2
+  },
+  {
+    "id": 4,
+    "order_id": 1,
+    "pizza_id": 3,
+    "quantity": 1,
+    "review_id": 3
+  },
+  {
+    "id": 5,
+    "order_id": 2,
+    "pizza_id": 6,
+    "quantity": 2,
+    "review_id": 4
   }
 ]

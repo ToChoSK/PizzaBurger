@@ -11,6 +11,7 @@ interface Pizza {
     type: "HAM" | "CHEESE" | "EXTRA" | "VEGETARIAN"
     price: number
     image: string
+    rating: number
 }
 
 interface Restaurant {
@@ -30,7 +31,7 @@ export default function PizzasPage() {
                     fetch("/data/pizzas.json"),
                     fetch("/data/restaurants.json"),
                 ])
-
+                console.log(pizzasResponse)
                 const pizzasData = await pizzasResponse.json()
                 const restaurantsData = await restaurantsResponse.json()
 
@@ -50,6 +51,16 @@ export default function PizzasPage() {
         const restaurant = restaurants.find((r) => r.id === restaurantId)
         return restaurant ? restaurant.name : "Unknown Restaurant"
     }
+
+    const sortByPrice = () => {
+        const sortedPizzas = [...pizzas].sort((a, b) => a.price - b.price);
+        setPizzas(sortedPizzas);
+    };
+
+    const sortByRating = () => {
+        const sortedPizzas = [...pizzas].sort((a, b) => b.rating - a.rating);
+        setPizzas(sortedPizzas);
+    };
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
@@ -73,6 +84,16 @@ export default function PizzasPage() {
                         Vegetarian
                     </Button>
                 </div>
+                <div className="mb-6 flex justify-center space-x-2">
+                    <Button onClick={()=>sortByPrice()}>
+                        SORT BY PRICE
+                    </Button>
+
+                    <Button onClick={()=>sortByRating()}>
+                        SORT BY REVIEWS
+                    </Button>
+
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredPizzas.map((pizza) => (
                         <div key={pizza.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -86,11 +107,19 @@ export default function PizzasPage() {
                                 <p className="text-gray-600 mb-2">Restaurant: {getRestaurantName(pizza.restaurant_id)}</p>
                                 <p className="text-lg font-bold text-green-600">€{pizza.price.toFixed(2)}</p>
                             </div>
+                            <div className="p-4">
+                                <h2 className="text-xl font-semibold mb-2 text-gray-800">Rating: {pizza.rating} </h2>
+                                <Button onClick={() => sortByPrice()}>
+                                    View reviews
+                                </Button>
+
+                            </div>
+
                         </div>
                     ))}
                 </div>
             </main>
-            <Footer />
+            <Footer/>
         </div>
     )
 }

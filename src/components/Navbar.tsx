@@ -17,7 +17,8 @@ export function Navbar() {
                   onClick={() => navigate('/')} // Navigácia na Home Page
               />
               <div className="hidden md:flex items-center gap-6">
-                <Button variant="link" className="text-white hover:text-white/80"
+                <Button variant="link"
+                        className="text-white hover:text-white/80"
                         onClick={() => navigate('/')} // Navigácia na /pizzas
                 >HOME</Button>
                 <Button variant="link" className="text-white hover:text-white/80">LAST ORDERS</Button>
@@ -28,7 +29,10 @@ export function Navbar() {
                 <MapPin className="h-4 w-4" />
                 <span className="hidden md:inline">current location</span>
               </Button>
-              <Button variant="ghost" className="text-white">
+              <Button variant="ghost"
+                      className="text-white"
+                      onClick={() => navigate('/profile')}
+              >
                 <User className="h-5 w-5" />
               </Button>
             </div>
