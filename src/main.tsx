@@ -5,6 +5,7 @@ import './styles/index.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import PizzasPage from "./components/PizzasPage.tsx";
 import ProfilePage from "./components/ProfilePage.tsx";
+import LoginPage from "./components/LoginPage.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <Route path="/" element={<App />} />
                 <Route path="/pizzas" element={<PizzasPage />} />
                 <Route path="/profile" element={<ProfilePage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>,

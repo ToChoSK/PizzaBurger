@@ -1,49 +1,142 @@
-"use client"
-
+import type React from "react"
 import { useState, useEffect } from "react"
-import { Navbar } from "./Navbar.tsx"
-import { Footer } from "./Footer.tsx"
+import {Navbar} from "./Navbar.tsx";
+import {Footer} from "./Footer.tsx";
 
 interface User {
     id: number
     name: string
+    email: string
+    password: string
+    address: string
 }
 
 export default function ProfilePage() {
-    const [users, setUsers] = useState<User[]>([])
+    const [user, setUser] = useState<User | null>(null)
+    const [isEditing, setIsEditing] = useState(false)
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [userResponse] = await Promise.all([
-                    fetch("/data/users.json"),
-                ])
-                const usersData = await userResponse.json()
-                setUsers(usersData)
-            } catch (error) {
-                console.error("Error fetching data:", error)
+        const fetchUser = () => {
+            const userCookie = document.cookie.split("; ").find((row) => row.startsWith("user="))
+            if (userCookie) {
+                const userData = JSON.parse(userCookie.split("=")[1])
+                setUser(userData)
             }
         }
 
-        fetchData()
+        fetchUser()
     }, [])
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
+        setUser((prev) => (prev ? { ...prev, [name]: value } : null))
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        if (!user) return
+
+        try {
+            const response = await fetch(`/api/users/${user.id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(user),
+            })
+            if (response.ok) {
+                setIsEditing(false)
+                document.cookie = `user=${JSON.stringify(user)}; path=/; max-age=3600`
+                alert("Profile updated successfully!")
+            } else {
+                alert("Failed to update profile. Please try again.")
+            }
+        } catch (error) {
+            console.error("Update error:", error)
+            alert("An error occurred while updating the profile.")
+        }
+    }
+
+    if (!user) {
+        return <div>Loading...</div>
+    }
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
             <Navbar />
             <main className="flex-grow container mx-auto px-4 py-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {users.map((user) => (
-                        <div key={user.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                            <div className="p-4">
-                                <h2 className="text-xl font-semibold mb-2 text-gray-800">{user.name} User</h2>
-                            </div>
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden p-6">
+                    <h2 className="text-2xl font-semibold mb-4 text-gray-800">User Profile</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                                Name
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="name"
+                                type="text"
+                                name="name"
+                                value={user.name}
+                                onChange={handleChange}
+                                disabled={!isEditing}
+                            />
                         </div>
-                    ))}
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                                Email
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="email"
+                                type="email"
+                                name="email"
+                                value={user.email}
+                                onChange={handleChange}
+                                disabled={!isEditing}
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+                                Address
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="address"
+                                type="text"
+                                name="address"
+                                value={user.address}
+                                onChange={handleChange}
+                                disabled={!isEditing}
+                            />
+                        </div>
+                        {isEditing ? (
+                            <div className="flex justify-between">
+                                <button
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    type="submit"
+                                >
+                                    Save Changes
+                                </button>
+                                <button
+                                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    type="button"
+                                    onClick={() => setIsEditing(false)}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        ) : (
+                            <button
+                                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                type="button"
+                                onClick={() => setIsEditing(true)}
+                            >
+                                Edit Profile
+                            </button>
+                        )}
+                    </form>
                 </div>
             </main>
-            <Footer/>
+            <Footer />
         </div>
     )
 }
