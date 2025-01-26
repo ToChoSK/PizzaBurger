@@ -1,7 +1,7 @@
 import type React from "react"
 import { useState, useEffect } from "react"
-import {Navbar} from "./Navbar.tsx";
-import {Footer} from "./Footer.tsx";
+import { Navbar } from "./Navbar.tsx"
+import { Footer } from "./Footer.tsx"
 
 interface User {
     id: number
@@ -21,6 +21,9 @@ export default function ProfilePage() {
             if (userCookie) {
                 const userData = JSON.parse(userCookie.split("=")[1])
                 setUser(userData)
+            } else {
+                // Redirect to /login if user data is not found
+                window.location.href = "/login"
             }
         }
 
@@ -140,4 +143,3 @@ export default function ProfilePage() {
         </div>
     )
 }
-

@@ -2,15 +2,15 @@
   {
     "id": 1,
     "name": "Andrej Bycan",
-    "email" : "bycan@pycan.sk",
-    "password" : "bycanpycan",
-    "address:" : "Mlynská dolina 1 04545 Bratislava"
+    "email": "andrej@bycan.sk",
+    "password": "bycanpycan",
+    "address": "Mlynská dolina"
   },
   {
     "id": 2,
     "name": "Lesný Duch",
-    "email" : "lesnyduch@bukovec.sk",
-    "password" : "lesnyduch",
-    "address:" : "Bukovec 333 04022"
+    "email": "lesnyduch@bukovec.sk",
+    "password": "lesnyduch",
+    "address": "Bukovec 333 04022"
   }
 ]
