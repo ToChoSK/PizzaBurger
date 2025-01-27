@@ -3,14 +3,6 @@ import { useState, useEffect } from "react"
 import { Footer } from "./Footer.tsx"
 import Navbar from "./Navbar.tsx";
 
-interface User {
-    id: number
-    name: string
-    email: string
-    password: string
-    address: string
-}
-
 
 export default function ProfilePage() {
     const [user, setUser] = useState<User | null>(null)

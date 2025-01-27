@@ -12,10 +12,12 @@ interface CartItem {
     id: number;
     pizza_id: number;
     quantity: number;
+    pizza?: Pizza; // Voliteľná vlastnosť pre dynamické priradenie
 }
 
 export function useCart() {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         const storedCart = Cookies.get("cart");
@@ -23,6 +25,15 @@ export function useCart() {
             setCartItems(JSON.parse(storedCart));
         }
     }, []);
+
+    // Aktualizácia celkovej sumy vždy, keď sa zmení `cartItems`
+    useEffect(() => {
+        const newTotal = cartItems.reduce(
+            (sum, item) => sum + item.quantity * (item.pizza?.price || 0),
+            0
+        );
+        setTotal(newTotal);
+    }, [cartItems]);
 
     const addToCart = (pizza: Pizza) => {
         setCartItems((prevItems) => {
@@ -33,7 +44,10 @@ export function useCart() {
                     item.pizza_id === pizza.id ? { ...item, quantity: item.quantity + 1 } : item
                 );
             } else {
-                updatedCart = [...prevItems, { id: Date.now(), pizza_id: pizza.id, quantity: 1 }];
+                updatedCart = [
+                    ...prevItems,
+                    { id: Date.now(), pizza_id: pizza.id, quantity: 1, pizza },
+                ];
             }
             Cookies.set("cart", JSON.stringify(updatedCart), { expires: 7 });
             return updatedCart;
@@ -59,5 +73,5 @@ export function useCart() {
         });
     };
 
-    return { cartItems, addToCart, removeFromCart, updateQuantity };
+    return { cartItems, total, addToCart, removeFromCart, updateQuantity };
 }

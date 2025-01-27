@@ -1,26 +1,13 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import Navbar from "./Navbar.tsx"
-import { Button } from "./ui/Button.tsx"
-import { Footer } from "./Footer.tsx"
+import Navbar from "./Navbar"
+import { Button } from "./ui/Button"
+import { Footer } from "./Footer"
 import { useCart } from "../hooks/useCart"
 import { motion, useAnimation } from "framer-motion"
-import {StarRating} from "./ui/StarRating.tsx";
-
-interface Pizza {
-    id: number
-    restaurant_id: number
-    type: "HAM" | "CHEESE" | "EXTRA" | "VEGETARIAN"
-    price: number
-    image: string
-    rating: number
-}
-
-interface Restaurant {
-    id: number
-    name: string
-}
+import { Filter, SortAsc } from "lucide-react"
+import PizzaCard from "./PizzaCard"
 
 export default function PizzasPage() {
     const [pizzas, setPizzas] = useState<Pizza[]>([])
@@ -68,19 +55,19 @@ export default function PizzasPage() {
         setPizzas(sortedPizzas)
     }
 
-    const handleAddToCart = async (pizza: Pizza, event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleAddToCart = async (pizza: Pizza) => {
         addToCart(pizza)
         setAddedPizzaId(pizza.id)
         setTimeout(() => setAddedPizzaId(null), 1000)
 
-        const button = event.currentTarget
-        const buttonRect = button.getBoundingClientRect()
+        const pizzaCard = document.getElementById(`pizza-${pizza.id}`)
         const navbarRect = navbarRef.current?.getBoundingClientRect()
 
-        if (navbarRect) {
-            const startX = buttonRect.left + buttonRect.width / 2
-            const startY = buttonRect.top + buttonRect.height / 2
-            const endX = navbarRect.right - 20 // Adjust this value to position the end point
+        if (pizzaCard && navbarRect) {
+            const pizzaRect = pizzaCard.getBoundingClientRect()
+            const startX = pizzaRect.left + pizzaRect.width / 2
+            const startY = pizzaRect.top + pizzaRect.height / 2
+            const endX = navbarRect.right - 20
             const endY = navbarRect.top + navbarRect.height / 2
 
             await animationControls.start({
@@ -94,69 +81,48 @@ export default function PizzasPage() {
     }
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-100">
+        <div className="min-h-screen flex flex-col bg-gray-50">
             <Navbar/>
             <main className="flex-grow container mx-auto px-4 py-8 max-w-7xl">
-                <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Our Pizzas</h1>
-                <div className="mb-6 flex flex-wrap justify-center gap-2">
+                <h1 className="text-5xl font-bold mb-8 text-center text-gray-800">Our Delicious Pizzas</h1>
+                <div className="mb-8 flex flex-wrap justify-center gap-3">
                     {["ALL", "HAM", "CHEESE", "EXTRA", "VEGETARIAN"].map((filterType) => (
                         <Button
                             key={filterType}
                             onClick={() => setFilter(filterType as any)}
                             variant={filter === filterType ? "default" : "outline"}
-                            className="rounded-full px-4 py-2 text-sm"
+                            className="rounded-full px-6 py-2 text-sm font-medium"
                         >
                             {filterType}
                         </Button>
                     ))}
                 </div>
-                <div className="mb-6 flex justify-center space-x-4">
-                    <Button onClick={sortByPrice} className="bg-gray-200 text-gray-800 hover:bg-gray-300 rounded-full px-4 py-2">
+                <div className="mb-8 flex justify-center space-x-4">
+                    <Button
+                        onClick={sortByPrice}
+                        className="bg-blue-100 text-blue-800 hover:bg-blue-200 rounded-full px-6 py-2 flex items-center"
+                    >
+                        <SortAsc className="w-4 h-4 mr-2" />
                         Sort by Price
                     </Button>
-                    <Button onClick={sortByRating} className="bg-gray-200 text-gray-800 hover:bg-gray-300 rounded-full px-4 py-2">
+                    <Button
+                        onClick={sortByRating}
+                        className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200 rounded-full px-6 py-2 flex items-center"
+                    >
+                        <Filter className="w-4 h-4 mr-2" />
                         Sort by Rating
                     </Button>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {filteredPizzas.map((pizza) => (
-                        <motion.div
-                            key={pizza.id}
-                            className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <div className="relative">
-                                <img
-                                    src={pizza.image || "/placeholder.svg"}
-                                    alt={`${pizza.type} Pizza`}
-                                    className="w-full h-48 object-cover"
-                                />
-                                <div className="absolute top-0 right-0 bg-white px-2 py-1 m-2 rounded-full shadow">
-                                    <StarRating rating={pizza.rating} />
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h2 className="text-xl font-semibold mb-2 text-gray-800">{pizza.type} Pizza</h2>
-                                <p className="text-sm text-gray-600 mb-2">From: {getRestaurantName(pizza.restaurant_id)}</p>
-                                <div className="flex justify-between items-center mt-4">
-                                    <p className="text-lg font-bold text-green-600">€{pizza.price.toFixed(2)}</p>
-                                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                        <Button
-                                            onClick={(e) => handleAddToCart(pizza, e)}
-                                            className={`px-4 py-2 rounded-full ${
-                                                addedPizzaId === pizza.id
-                                                    ? "bg-green-500 text-white"
-                                                    : "bg-blue-600 text-white hover:bg-blue-700"
-                                            }`}
-                                        >
-                                            {addedPizzaId === pizza.id ? "Added!" : "Add to Cart"}
-                                        </Button>
-                                    </motion.div>
-                                </div>
-                            </div>
-                        </motion.div>
+                        <div key={pizza.id} id={`pizza-${pizza.id}`}>
+                            <PizzaCard
+                                pizza={pizza}
+                                getRestaurantName={getRestaurantName}
+                                onAddToCart={handleAddToCart}
+                                addedPizzaId={addedPizzaId}
+                            />
+                        </div>
                     ))}
                 </div>
             </main>

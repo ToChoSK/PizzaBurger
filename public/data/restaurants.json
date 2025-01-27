@@ -1,14 +1,20 @@
 [
   {
     "id": 1,
-    "name": "Pizza Palace"
+    "name": "Pizza Palace",
+    "fee": 2.99,
+    "address": "123 Main St, Chicago, IL 60601"
   },
   {
     "id": 2,
-    "name": "Pizza Haven"
+    "name": "Pizza Haven",
+    "fee": 3.99,
+    "address": "456 Elm St, Chicago, IL 60602"
   },
   {
     "id": 3,
-    "name": "Italian Delights"
+    "name": "Italian Delights",
+    "fee": 4.99,
+    "address": "789 Oak St, Chicago, IL 60603"
   }
 ]

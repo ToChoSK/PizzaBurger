@@ -1,25 +1,5 @@
 import type React from "react"
 
-interface Order {
-  id: number
-  user_id: number
-  type: "FINISHED" | "PROCESSING"
-}
-
-interface OrderItem {
-  id: number
-  order_id: number
-  pizza_id: number
-  quantity: number
-  review_id: number | null
-}
-
-interface OrderDetailsProps {
-  order: Order
-  orderItems: OrderItem[]
-  onClose: () => void
-}
-
 const OrderDetails: React.FC<OrderDetailsProps> = ({ order, orderItems, onClose }) => {
   return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
