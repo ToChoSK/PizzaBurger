@@ -1,13 +1,14 @@
-import type React from "react";
-import { NavLink } from "react-router-dom";
-import { UserCircle } from "lucide-react";
-import {useCartCount} from "../hooks/useCartCount.ts"; // Importujte useCart
+import { forwardRef } from "react"
+import { NavLink } from "react-router-dom"
+import { UserCircle, ShoppingCart } from "lucide-react"
+import { useCartCount } from "../hooks/useCartCount.ts"
+import { motion } from "framer-motion"
 
-const Navbar: React.FC = () => {
-    const cartItemsCount  = useCartCount(); // Získanie počtu položiek z hooku
+const Navbar = forwardRef<HTMLDivElement, { cartItemsCount: number }>((_, ref) => {
+    const cartItemsCount = useCartCount()
 
     return (
-        <nav className="bg-white shadow-md">
+        <nav className="bg-white shadow-md sticky top-0 z-50" ref={ref}>
             <div className="container mx-auto px-6 py-3">
                 <div className="flex items-center justify-between">
                     <div className="text-xl font-semibold text-gray-700">
@@ -38,7 +39,17 @@ const Navbar: React.FC = () => {
                                 `text-gray-600 hover:text-blue-600 transition duration-300 ${isActive ? "font-semibold" : ""}`
                             }
                         >
-                            Cart ({cartItemsCount}) {/* Počet položiek sa tu automaticky aktualizuje */}
+                            <div className="relative">
+                                <ShoppingCart className="w-6 h-6 text-gray-600 hover:text-blue-600 transition-colors duration-300" />
+                                <motion.div
+                                    key={cartItemsCount}
+                                    initial={{ scale: 0.5, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold"
+                                >
+                                    {cartItemsCount}
+                                </motion.div>
+                            </div>
                         </NavLink>
                         <NavLink
                             to="/profile"
@@ -52,7 +63,10 @@ const Navbar: React.FC = () => {
                 </div>
             </div>
         </nav>
-    );
-};
+    )
+})
 
-export default Navbar;
+Navbar.displayName = "Navbar"
+
+export default Navbar
+
