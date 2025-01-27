@@ -1,7 +1,8 @@
 import type React from "react"
 import { useState, useEffect } from "react"
-import { Navbar } from "./Navbar.tsx"
 import { Footer } from "./Footer.tsx"
+import Navbar from "./Navbar.tsx";
+import {useCartCount} from "../hooks/useCartCount.ts";
 
 interface User {
     id: number
@@ -11,9 +12,12 @@ interface User {
     address: string
 }
 
+
 export default function ProfilePage() {
     const [user, setUser] = useState<User | null>(null)
     const [isEditing, setIsEditing] = useState(false)
+
+    const cartItemsCount = useCartCount();
 
     useEffect(() => {
         const fetchUser = () => {
@@ -64,7 +68,7 @@ export default function ProfilePage() {
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
-            <Navbar />
+            <Navbar  cartItemsCount={cartItemsCount}/>
             <main className="flex-grow container mx-auto px-4 py-8">
                 <div className="bg-white shadow-lg rounded-lg overflow-hidden p-6">
                     <h2 className="text-2xl font-semibold mb-4 text-gray-800">User Profile</h2>

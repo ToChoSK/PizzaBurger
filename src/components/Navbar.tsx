@@ -1,44 +1,58 @@
-import { Button } from "./ui/Button.tsx"
-import { MapPin, User } from 'lucide-react'
-import {useNavigate} from "react-router-dom";
+import type React from "react";
+import { NavLink } from "react-router-dom";
+import { UserCircle } from "lucide-react";
+import {useCartCount} from "../hooks/useCartCount.ts"; // Importujte useCart
 
-export function Navbar() {
-  const navigate = useNavigate();
+const Navbar: React.FC = () => {
+    const cartItemsCount  = useCartCount(); // Získanie počtu položiek z hooku
 
-  return (
-      <nav className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-8">
-              <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DifXxkuAUoZhUNqFxRuD52QSFyfxGT.png"
-                  alt="PizzaBurger Logo"
-                  className="h-12 w-12 cursor-pointer" // Kurzot ukazuje možnosť kliknutia
-                  onClick={() => navigate('/')} // Navigácia na Home Page
-              />
-              <div className="hidden md:flex items-center gap-6">
-                <Button variant="link"
-                        className="text-white hover:text-white/80"
-                        onClick={() => navigate('/')} // Navigácia na /pizzas
-                >HOME</Button>
-                <Button variant="link" className="text-white hover:text-white/80">LAST ORDERS</Button>
-              </div>
+    return (
+        <nav className="bg-white shadow-md">
+            <div className="container mx-auto px-6 py-3">
+                <div className="flex items-center justify-between">
+                    <div className="text-xl font-semibold text-gray-700">
+                        <NavLink to="/" className="text-blue-600 hover:text-blue-800 transition duration-300">
+                            PizzaPlace
+                        </NavLink>
+                    </div>
+                    <div className="flex space-x-4 items-center">
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                `text-gray-600 hover:text-blue-600 transition duration-300 ${isActive ? "font-semibold" : ""}`
+                            }
+                        >
+                            Home
+                        </NavLink>
+                        <NavLink
+                            to="/pizzas"
+                            className={({ isActive }) =>
+                                `text-gray-600 hover:text-blue-600 transition duration-300 ${isActive ? "font-semibold" : ""}`
+                            }
+                        >
+                            Pizzas
+                        </NavLink>
+                        <NavLink
+                            to="/cart"
+                            className={({ isActive }) =>
+                                `text-gray-600 hover:text-blue-600 transition duration-300 ${isActive ? "font-semibold" : ""}`
+                            }
+                        >
+                            Cart ({cartItemsCount}) {/* Počet položiek sa tu automaticky aktualizuje */}
+                        </NavLink>
+                        <NavLink
+                            to="/profile"
+                            className={({ isActive }) =>
+                                `text-gray-600 hover:text-blue-600 transition duration-300 ${isActive ? "font-semibold" : ""}`
+                            }
+                        >
+                            <UserCircle className="w-6 h-6" />
+                        </NavLink>
+                    </div>
+                </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" className="text-white gap-2">
-                <MapPin className="h-4 w-4" />
-                <span className="hidden md:inline">current location</span>
-              </Button>
-              <Button variant="ghost"
-                      className="text-white"
-                      onClick={() => navigate('/profile')}
-              >
-                <User className="h-5 w-5" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
-  )
-}
+        </nav>
+    );
+};
 
+export default Navbar;

@@ -1,9 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Navbar } from "./Navbar.tsx"
+import  Navbar  from "./Navbar.tsx"
 import { Button } from "./ui/Button.tsx"
 import { Footer } from "./Footer.tsx"
+import { useCart } from "../hooks/useCart"
+import { motion } from "framer-motion"
+import {useCartCount} from "../hooks/useCartCount.ts";
 
 interface Pizza {
     id: number
@@ -23,6 +26,9 @@ export default function PizzasPage() {
     const [pizzas, setPizzas] = useState<Pizza[]>([])
     const [restaurants, setRestaurants] = useState<Restaurant[]>([])
     const [filter, setFilter] = useState<"HAM" | "CHEESE" | "EXTRA" | "VEGETARIAN" | "ALL">("ALL")
+    const { addToCart} = useCart();
+    const cartItemsCount = useCartCount();
+    const [addedPizzaId, setAddedPizzaId] = useState<number | null>(null)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,7 +37,6 @@ export default function PizzasPage() {
                     fetch("/data/pizzas.json"),
                     fetch("/data/restaurants.json"),
                 ])
-                console.log(pizzasResponse)
                 const pizzasData = await pizzasResponse.json()
                 const restaurantsData = await restaurantsResponse.json()
 
@@ -53,18 +58,24 @@ export default function PizzasPage() {
     }
 
     const sortByPrice = () => {
-        const sortedPizzas = [...pizzas].sort((a, b) => a.price - b.price);
-        setPizzas(sortedPizzas);
-    };
+        const sortedPizzas = [...pizzas].sort((a, b) => a.price - b.price)
+        setPizzas(sortedPizzas)
+    }
 
     const sortByRating = () => {
-        const sortedPizzas = [...pizzas].sort((a, b) => b.rating - a.rating);
-        setPizzas(sortedPizzas);
-    };
+        const sortedPizzas = [...pizzas].sort((a, b) => b.rating - a.rating)
+        setPizzas(sortedPizzas)
+    }
+
+    const handleAddToCart = (pizza: Pizza) => {
+        addToCart(pizza)
+        setAddedPizzaId(pizza.id)
+        setTimeout(() => setAddedPizzaId(null), 1000)
+    }
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
-            <Navbar />
+            <Navbar cartItemsCount={cartItemsCount} />
             <main className="flex-grow container mx-auto px-4 py-8">
                 <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Our Pizzas</h1>
                 <div className="mb-6 flex justify-center space-x-2">
@@ -85,18 +96,18 @@ export default function PizzasPage() {
                     </Button>
                 </div>
                 <div className="mb-6 flex justify-center space-x-2">
-                    <Button onClick={()=>sortByPrice()}>
-                        SORT BY PRICE
-                    </Button>
-
-                    <Button onClick={()=>sortByRating()}>
-                        SORT BY REVIEWS
-                    </Button>
-
+                    <Button onClick={sortByPrice}>SORT BY PRICE</Button>
+                    <Button onClick={sortByRating}>SORT BY REVIEWS</Button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredPizzas.map((pizza) => (
-                        <div key={pizza.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
+                        <motion.div
+                            key={pizza.id}
+                            className="bg-white shadow-lg rounded-lg overflow-hidden"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
                             <img
                                 src={pizza.image || "/placeholder.svg"}
                                 alt={`${pizza.type} Pizza`}
@@ -107,19 +118,22 @@ export default function PizzasPage() {
                                 <p className="text-gray-600 mb-2">Restaurant: {getRestaurantName(pizza.restaurant_id)}</p>
                                 <p className="text-lg font-bold text-green-600">€{pizza.price.toFixed(2)}</p>
                             </div>
-                            <div className="p-4">
-                                <h2 className="text-xl font-semibold mb-2 text-gray-800">Rating: {pizza.rating} </h2>
-                                <Button onClick={() => sortByPrice()}>
-                                    View reviews
-                                </Button>
-
+                            <div className="p-4 flex justify-between items-center">
+                                <h2 className="text-xl font-semibold text-gray-800">Rating: {pizza.rating} </h2>
+                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                    <Button
+                                        onClick={() => handleAddToCart(pizza)}
+                                        className={addedPizzaId === pizza.id ? "bg-green-500" : ""}
+                                    >
+                                        {addedPizzaId === pizza.id ? "Added!" : "Add to Cart"}
+                                    </Button>
+                                </motion.div>
                             </div>
-
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </main>
-            <Footer/>
+            <Footer />
         </div>
     )
 }
