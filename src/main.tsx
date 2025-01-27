@@ -6,7 +6,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import PizzasPage from "./components/PizzasPage.tsx";
 import ProfilePage from "./components/ProfilePage.tsx";
 import LoginPage from "./components/LoginPage.tsx";
-import OrdersPage from "./components/OrdersPage.tsx";
+import OrdersPage from "./components/Orders.tsx";
 import CartPage from "./components/CartPage.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

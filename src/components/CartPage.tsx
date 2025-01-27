@@ -5,7 +5,6 @@ import Navbar from "./Navbar.tsx"
 import { Button } from "./ui/Button.tsx"
 import { Footer } from "./Footer.tsx"
 import { useCart } from "../hooks/useCart"
-import {useCartCount} from "../hooks/useCartCount.ts";
 
 interface Pizza {
     id: number
@@ -23,7 +22,6 @@ interface CartItem {
 
 export default function CartPage() {
     const { cartItems, removeFromCart, updateQuantity} = useCart()
-    const cartItemsCount = useCartCount();
     const [total, setTotal] = useState(0)
     const [fullCartItems, setFullCartItems] = useState<CartItem[]>([])
 
@@ -51,7 +49,7 @@ export default function CartPage() {
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
-            <Navbar cartItemsCount={cartItemsCount} />
+            <Navbar/>
             <main className="flex-grow container mx-auto px-4 py-8">
                 <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Your Cart</h1>
                 {fullCartItems.length === 0 ? (

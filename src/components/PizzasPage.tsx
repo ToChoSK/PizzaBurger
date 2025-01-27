@@ -6,7 +6,6 @@ import { Button } from "./ui/Button.tsx"
 import { Footer } from "./Footer.tsx"
 import { useCart } from "../hooks/useCart"
 import { motion, useAnimation } from "framer-motion"
-import { useCartCount } from "../hooks/useCartCount.ts"
 import {StarRating} from "./ui/StarRating.tsx";
 
 interface Pizza {
@@ -28,7 +27,6 @@ export default function PizzasPage() {
     const [restaurants, setRestaurants] = useState<Restaurant[]>([])
     const [filter, setFilter] = useState<"HAM" | "CHEESE" | "EXTRA" | "VEGETARIAN" | "ALL">("ALL")
     const { addToCart } = useCart()
-    const cartItemsCount = useCartCount()
     const [addedPizzaId, setAddedPizzaId] = useState<number | null>(null)
     const animationControls = useAnimation()
     const navbarRef = useRef<HTMLDivElement>(null)
@@ -97,7 +95,7 @@ export default function PizzasPage() {
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-100">
-            <Navbar cartItemsCount={cartItemsCount} ref={navbarRef} />
+            <Navbar/>
             <main className="flex-grow container mx-auto px-4 py-8 max-w-7xl">
                 <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Our Pizzas</h1>
                 <div className="mb-6 flex flex-wrap justify-center gap-2">

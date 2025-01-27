@@ -46,6 +46,13 @@ class Pizza {
 class Order {
     -id : int [PK]  <<generated>>
     -user_id : int [FK]
+    -type: OrderType
+    -timestamp: datetime
+}
+
+enum OrderType {
+  FINISHED
+  PROCESSING
 }
 
 enum PizzaType {
